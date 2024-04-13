@@ -14,9 +14,13 @@
     "@nivo/line": "^0.85.1",
     "@nivo/pie": "^0.85.1",
     "@types/d3": "^7.4.3",
+    "@types/react-query": "^1.2.9",
+    "axios": "^1.6.8",
     "d3": "^7.9.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.3",
+    "react-query": "^3.39.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.75",

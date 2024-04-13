@@ -1,5 +1,4 @@
-import e, { Router } from "express";
-import fs from 'node:fs/promises'
+import  { Router } from "express";
 import Sampledata from './module.js'
 
 
@@ -7,24 +6,26 @@ import Sampledata from './module.js'
 
 const router = Router()
 
-// router.route('/datauplode').post(async (req,res)=>{
-//     const alldata = await fs.readFile('jsondata.json')
-//  console.log(alldata.toString('utf-8'));
-// try {
-//     await Sampledata.create(JSON.parse(alldata))
-//         res.send("jfklj")
-        
-// } catch (error) {
-//     console.log(error);
-// }
-// })
 
 
 
-router.route("/data").get((req,res)=>{
-    const { endYear, topics, sector, region, pest, source, swot, country, city } = req.query;
-    console.log(endYear, topics, sector, region, pest, source, swot, country, city);
-    res.json({endYear, topics, sector, region, pest, source, swot, country, city})
+router.route("/data").get(async(req,res)=>{
+    try {
+        const { end_year,intensity,sector,topic,insight,url,region,start_year,impact,added,published,country,relevance,pestle,source,title,likelihood} =  req.query;
+        console.log(req.query, "query");
+
+    const filterData = await Sampledata.find(req.query)
+if(filterData.length === 0 && !filterData){
+    res.status(400).json({
+        error: "No data found"
+    })
+    return;
+}
+    
+    res.json({length:filterData.length,filterData})
+    } catch (error) {
+        res.json({error})
+    }
 })
 
 export default router;

@@ -1,7 +1,8 @@
 import './App.css'
-import ChartComponent from './components/Chart'
+import Chart from './components/Chart'
+// import ChartComponent from './components/Chart'
 // import FilterDropdown from './components/FilterDropdown'
-import FilterForm from './components/FilterForm'
+// import FilterForm from './components/FilterForm'
 
 
 
@@ -11,8 +12,9 @@ function App() {
     <>
     <div className=''>
   {/* <FilterDropdown/> */}
-  <FilterForm/>
-  <ChartComponent  />
+  {/* <FilterForm/> */}
+  {/* <ChartComponent  /> */}
+  <Chart/>
     </div>
     </>
   )
