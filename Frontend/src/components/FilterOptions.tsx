@@ -3,10 +3,13 @@ import { useForm } from "react-hook-form"
 
 
 function FilterOptions({setFilterData}) {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit,reset } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+
     setFilterData(data)
+    if(Object.keys(data).length === 0 || data === undefined || data === null){
+      setFilterData({})
+    }
   }
 
 
@@ -20,11 +23,11 @@ function FilterOptions({setFilterData}) {
           <div className="flex flex-row justify-between items-center">
             <div className="w-1/4">
               <label htmlFor="end_year" className="block text-sm font-medium text-gray-700">End Year</label>
-              <input {...register('end_year')} type="text" name="end_year" id="end_year"  className="mt-1  block  shadow-sm sm:text-sm border-gray-300 rounded-md border text-black ml-2  outline-none p-2  " />
+              <input {...register('end_year')} type="number" name="end_year" id="end_year"  className="mt-1  block  shadow-sm sm:text-sm border-gray-300 rounded-md border text-black ml-2  outline-none p-2  " />
             </div>
             <div className="w-1/4">
               <label htmlFor="intensity" className="block text-sm font-medium text-gray-700">Intensity</label>
-              <input {...register('intensity')} type="text" name="intensity" id="intensity"  className="mt-1  block  shadow-sm sm:text-sm border-gray-300 rounded-md border text-black ml-2  outline-none p-2  " />
+              <input {...register('intensity')} type="number" name="intensity" id="intensity"  className="mt-1  block  shadow-sm sm:text-sm border-gray-300 rounded-md border text-black ml-2  outline-none p-2  " />
             </div>
             <div className="w-1/4">
               <label htmlFor="sector" className="block text-sm font-medium text-gray-700">Sector</label>
@@ -47,10 +50,6 @@ function FilterOptions({setFilterData}) {
             <div className="w-1/4">
               <label htmlFor="start_year" className="block text-sm font-medium text-gray-700">Start Year</label>
               <input {...register('start_year')} type="text" name="start_year" id="start_year"  className="mt-1  block  shadow-sm sm:text-sm border-gray-300 rounded-md border text-black ml-2  outline-none p-2  " />
-            </div>
-            <div className="w-1/4">
-              <label htmlFor="impact" className="block text-sm font-medium text-gray-700">Impact</label>
-              <input {...register('impact')} type="text" name="impact" id="impact"  className="mt-1  block  shadow-sm sm:text-sm border-gray-300 rounded-md border text-black ml-2  outline-none p-2  " />
             </div>
             </div>
             <div className="flex flex-row justify-between items-center">
@@ -75,9 +74,16 @@ function FilterOptions({setFilterData}) {
             </div>
             </div>
           </section>
-          <div className="flex justify-center items-center">
-              <button type="submit" className="bg-amber-700 p-4 rounded-md mt-3 font-semibold text-white/85 text-xl">Apply Filters</button>
+          <div className="flex justify-center items-center flex-row">
+              <button type="submit" className="bg-amber-700 p-4 rounded-md mt-3 font-semibold text-white/85 text-xl" 
+              >Apply Filters</button>
+              <button  onClick={()=>{
+                setFilterData({})
+                reset()
+              }} type="submit" className="bg-amber-700 p-4 rounded-md mt-3 font-semibold text-white/85 text-xl ml-3" 
+              >Reset</button>
             </div>
+           
         </form>
             
           </section>

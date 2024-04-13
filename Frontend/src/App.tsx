@@ -10,6 +10,9 @@ import Chart from './components/Chart'
 function App() {
   return (
     <>
+    <div className='bg-gray-100 text-center text-2xl font-bold p-4'>
+      Data Visualization
+    </div>
     <div className=''>
   {/* <FilterDropdown/> */}
   {/* <FilterForm/> */}

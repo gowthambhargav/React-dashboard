@@ -10,30 +10,55 @@ export default function Chart() {
  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-  const [url, setUrl] = useState('http://localhost:3000/temp/data?end_year=2025')
+  const [url, setUrl] = useState('http://localhost:3000/temp/data')
   useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const validFilterData = Object.fromEntries(
+        Object.entries(filterData).filter(([key, value]) => value)
+      );
+      const response = await axios.get(url, {
+        params: validFilterData || { end_year: 2025 },
+      });
+      setData(response.data.filterData);
+      setIsLoading(false);
+    } catch (error) {
+      setError(error);
+      setIsLoading(false);
+    }
+  }
+  fetchData();
   
     
-    axios.get(url)
-      .then((data) => {
-        setData(data.data.filterData);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setIsLoading(false);
-      });
-  }, []);
+    // axios.get(url,{
+    //   params:  filterData ? { ...filterData } : { end_year: 2025 } || {
+    //     end_year: 2024,
+    //   }
+    // })
+    //   .then((data) => {
+    //     setData(data.data.filterData);
+    //     setIsLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     setError(error);
+    //     setIsLoading(false);
+    //   });
+  }, [filterData]);
 
   if (isLoading) return 'Loading...';
   if (error) return `Error: ${error.message}`;
-  if (data.length ===0) return <div className="text-2xl text-red-500 text-center">No data found</div>;
 
-console.log(filterData);
+
+console.log(data);
 
   return (
    <>
-  <BarChart data={data}/>
+  {   data.length ===0 && <div className="flex justify-center items-center flex-col">
+  <div className="text-2xl text-red-500 text-center">No data found</div>
+
+  </div>
+  }
+  {data.length !==0 && <BarChart data={data} keys={['end_year',"intensity","relevance","likelihood","start_year"]}/>}
 
           <FilterOptions setFilterData={setFilterData}/>
    
