@@ -10,12 +10,13 @@ export default function Chart() {
  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-  const [url, setUrl] = useState('http://localhost:3000/temp/data')
+  const [url] = useState('http://localhost:3000/temp/data')
   useEffect(() => {
   const fetchData = async () => {
     try {
       const validFilterData = Object.fromEntries(
-        Object.entries(filterData).filter(([key, value]) => value)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        Object.entries(filterData).filter(([_, value]) => value)
       );
       const response = await axios.get(url, {
         params: validFilterData || { end_year: 2025 },
@@ -43,6 +44,7 @@ export default function Chart() {
     //     setError(error);
     //     setIsLoading(false);
     //   });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterData]);
 
   if (isLoading) return 'Loading...';
