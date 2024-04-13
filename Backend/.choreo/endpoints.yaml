@@ -1,0 +1,5 @@
+version: 1
+endpoints:
+  - name: MyEndpoint
+    url: http://localhost:3000/temp/data
+    method: GET
