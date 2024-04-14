@@ -1,6 +1,4 @@
 endpoints:
   - name: "http-endpoint"
-    port: 8080
-    type: "http"
-    networkVisibility: "public"
-    context: "/temp/data"
+    method: GET
+    path: "/temp/data"
