@@ -10,7 +10,7 @@ export default function Chart() {
  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-  const [url] = useState('http://localhost:3000/temp/data')
+  const [url] = useState('https://3c001b00-612e-42bb-9e47-bac5a85377e2.e1-us-cdp-2.choreoapps.dev/choreo-apis/nodejsserverdashboard/nodejs/http-endpoint-0b3/v1.0')
   useEffect(() => {
   const fetchData = async () => {
     try {
