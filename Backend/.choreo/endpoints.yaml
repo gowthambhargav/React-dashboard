@@ -7,3 +7,11 @@ endpoints:
     type: REST
     networkVisibility: Public
     context: /
+
+endpoints:
+  - name: "http-endpoint"
+    method: GET
+    port: 3000
+    type: REST
+    networkVisibility: Public
+    context: /temp/data
