@@ -1,4 +1,9 @@
+version: 1.0
+
 endpoints:
   - name: "http-endpoint"
     method: GET
-    path: "/temp/data"
+    port: 3000
+    type: REST
+    networkVisibility: Public
+    path: /temp/data
