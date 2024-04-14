@@ -6,4 +6,4 @@ endpoints:
     port: 3000
     type: REST
     networkVisibility: Public
-    path: /temp/data
+    path: /
