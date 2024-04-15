@@ -10,8 +10,8 @@ export default function Chart() {
  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-  const [url] = useState('https://react-dashboard-aj40.onrender.com')
-  useEffect(() => {
+  const url = 'https://react-dashboard-aj40.onrender.com'
+    useEffect(() => {
   const fetchData = async () => {
     try {
       const validFilterData = Object.fromEntries(
