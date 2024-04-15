@@ -10,7 +10,7 @@ export default function Chart() {
  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
-  const url = 'https://react-dashboard-aj40.onrender.com'
+  const url = 'https://react-dashboard-aj40.onrender.com/temp/data'
     useEffect(() => {
   const fetchData = async () => {
     try {
@@ -19,8 +19,10 @@ export default function Chart() {
         Object.entries(filterData).filter(([_, value]) => value)
       );
       const response = await axios.get(url, {
-        params: validFilterData || { end_year: 2025 },
+        params: validFilterData || { end_year: 2020 },
       });
+      console.log(response,"hkjh");
+      
       setData(response.data.filterData);
       setIsLoading(false);
     } catch (error) {
@@ -44,7 +46,6 @@ export default function Chart() {
     //     setError(error);
     //     setIsLoading(false);
     //   });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterData]);
 
   if (isLoading) return 'Loading...';
@@ -55,12 +56,12 @@ console.log(data);
 
   return (
    <>
-  {   data.length ===0 && <div className="flex justify-center items-center flex-col">
+  { data &&  data?.length === 0 && <div className="flex justify-center items-center flex-col">
   <div className="text-2xl text-red-500 text-center">No data found</div>
 
   </div>
   }
-  {data.length !==0 && <BarChart data={data} keys={['end_year',"intensity","relevance","likelihood","start_year"]}/>}
+  { data && data.length !==0 && <BarChart data={data} keys={['end_year',"intensity","relevance","likelihood","start_year"]}/>}
 
           <FilterOptions setFilterData={setFilterData}/>
    
